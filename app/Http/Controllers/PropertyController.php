@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Property;
+use App\Category;
+use App\Modality;
+use App\Location;
+use App\City;
+use App\State;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -14,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        return view('property.index', ['properties' => Property::all()]);
     }
 
     /**
@@ -24,7 +29,13 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view('property.create', [
+            'categories' => Category::all(),
+            'modalities' => Modality::all(),
+            'locations' => Location::all(),
+            'cities' => City::all(),
+            'states' => State::all()
+        ]);
     }
 
     /**
@@ -35,7 +46,12 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $property = new Property($request->all());
+        if ($property->save()) {
+            return redirect()->route('property.index')->with('message', 'Propriedade criada com sucesso!');
+        } else {
+            return redirect()->route('property.index')->with('message', 'Erro na criação da propriedade!');
+        }
     }
 
     /**
@@ -57,7 +73,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //
+        return view('property.edit', array('property' => $property));
     }
 
     /**
@@ -69,7 +85,8 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-        //
+        $property->update($request->all());
+        return redirect()->route('property.index');
     }
 
     /**
@@ -80,6 +97,7 @@ class PropertyController extends Controller
      */
     public function destroy(Property $property)
     {
-        //
+        $property->delete();
+        return redirect()->route('property.index');
     }
 }

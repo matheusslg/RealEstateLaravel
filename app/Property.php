@@ -12,7 +12,9 @@ class Property extends Model
         'nome',
         'id_categoria',
         'id_modalidade',
+        'id_localizacao',
         'id_cidade',
+        'id_estado',
         'localidade',
         'descricao',
         'geolocalizacao',
@@ -34,5 +36,13 @@ class Property extends Model
 
     public function cities() {
         return $this->hasOne(City::class);
+    }
+
+    public function states() {
+        return $this->hasOne(State::class);
+    }
+
+    public function locations() {
+        return $this->hasOne(Location::class);
     }
 }

@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.index', ['users' => User::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -35,7 +35,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User($request->all());
+        if ($user->save()) {
+            return redirect()->route('user.index')->with('message', 'Modalidade criada com sucesso!');
+        } else {
+            return redirect()->route('user.index')->with('message', 'Erro na criação da modalidade!');
+        }
     }
 
     /**
@@ -57,7 +62,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit', array('user' => $user));
     }
 
     /**
@@ -69,7 +74,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+        return redirect()->route('user.index');
     }
 
     /**
@@ -80,6 +86,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Modality;
+use App\State;
 use Illuminate\Http\Request;
 
-class ModalityController extends Controller
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ModalityController extends Controller
      */
     public function index()
     {
-        return view('modality.index', ['modalities' => Modality::all()]);
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class ModalityController extends Controller
      */
     public function create()
     {
-        return view('modality.create');
+        //
     }
 
     /**
@@ -35,21 +35,16 @@ class ModalityController extends Controller
      */
     public function store(Request $request)
     {
-        $modality = new Modality($request->all());
-        if ($modality->save()) {
-            return redirect()->route('modality.index')->with('message', 'Modalidade criada com sucesso!');
-        } else {
-            return redirect()->route('modality.index')->with('message', 'Erro na criação da modalidade!');
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(Modality $modality)
+    public function show(State $state)
     {
         //
     }
@@ -57,36 +52,34 @@ class ModalityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modality $modality)
+    public function edit(State $state)
     {
-        return view('modality.edit', array('modality' => $modality));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modality  $modality
+     * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modality $modality)
+    public function update(Request $request, State $state)
     {
-        $modality->update($request->all());
-        return redirect()->route('modality.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modality $modality)
+    public function destroy(State $state)
     {
-        $modality->delete();
-        return redirect()->route('modality.index');
+        //
     }
 }

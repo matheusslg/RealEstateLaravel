@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Modality;
+use App\Location;
 use Illuminate\Http\Request;
 
-class ModalityController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ModalityController extends Controller
      */
     public function index()
     {
-        return view('modality.index', ['modalities' => Modality::all()]);
+        return view('location.index', ['locations' => Location::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class ModalityController extends Controller
      */
     public function create()
     {
-        return view('modality.create');
+        return view('location.create');
     }
 
     /**
@@ -35,21 +35,21 @@ class ModalityController extends Controller
      */
     public function store(Request $request)
     {
-        $modality = new Modality($request->all());
-        if ($modality->save()) {
-            return redirect()->route('modality.index')->with('message', 'Modalidade criada com sucesso!');
+        $location = new Location($request->all());
+        if ($location->save()) {
+            return redirect()->route('location.index')->with('message', 'Localização criada com sucesso!');
         } else {
-            return redirect()->route('modality.index')->with('message', 'Erro na criação da modalidade!');
+            return redirect()->route('location.index')->with('message', 'Erro na criação da localização!');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Modality $modality)
+    public function show(Location $location)
     {
         //
     }
@@ -57,36 +57,36 @@ class ModalityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modality $modality)
+    public function edit(Location $location)
     {
-        return view('modality.edit', array('modality' => $modality));
+        return view('location.edit', array('location' => $location));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modality  $modality
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modality $modality)
+    public function update(Request $request, Location $location)
     {
-        $modality->update($request->all());
-        return redirect()->route('modality.index');
+        $location->update($request->all());
+        return redirect()->route('location.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modality  $modality
+     * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modality $modality)
+    public function destroy(Location $location)
     {
-        $modality->delete();
-        return redirect()->route('modality.index');
+        $location->delete();
+        return redirect()->route('location.index');
     }
 }
