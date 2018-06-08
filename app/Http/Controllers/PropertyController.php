@@ -19,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('property.index', ['properties' => Property::all()]);
+        return view('property.index', ['properties' => Property::orderBy('nome')->get()]);
     }
 
     /**
@@ -30,9 +30,9 @@ class PropertyController extends Controller
     public function create()
     {
         return view('property.create', [
-            'categories' => Category::all(),
-            'modalities' => Modality::all(),
-            'locations' => Location::all(),
+            'categories' => Category::orderBy('nome')->get(),
+            'modalities' => Modality::orderBy('nome')->get(),
+            'locations' => Location::orderBy('nome')->get(),
             'cities' => City::all(),
             'states' => State::all()
         ]);

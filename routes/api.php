@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\City;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,12 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('cities', function() {
+    return response(City::all(), 200)->header('Content-Type', 'application/json');
+});
+
+Route::get('cities/{uf}', function($uf) {
+    return response(City::where('uf', $uf)->orderBy('nome', 'asc')->get(), 200)->header('Content-Type', 'application/json');
 });
