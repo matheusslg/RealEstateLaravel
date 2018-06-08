@@ -81,9 +81,13 @@
 
             <div class="form-group">
                 <label for="text">Geolocalização</label>
-                <input type="text" class="form-control" name="geolocalizacao" placeholder="Geolocalização da propriedade">
+                <input type="text" id="geolocalizacaoInput" class="form-control" name="geolocalizacao" placeholder="Geolocalização da propriedade">
                 <small id="geolocalizacaoHelp" class="form-text text-muted">Este campo pode ser preenchido com as coordenadas do Google Maps.</small>
             </div>
+
+            <div id="map"></div>
+            <br />
+
             <div class="form-group">
                 <label for="text">Área</label>
                 <input type="number" class="form-control" name="area" placeholder="Área da propriedade">
@@ -110,4 +114,6 @@
         </form>
     </div>
 </div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFxqoJT-UimQJgznKztWWbY9A_XYxVUCY&callback=initMap"></script>
 @endsection
