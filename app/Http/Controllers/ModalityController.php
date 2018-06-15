@@ -14,7 +14,7 @@ class ModalityController extends Controller
      */
     public function index()
     {
-        return view('modality.index', ['modalities' => Modality::all()]);
+        return view('admin.modality.index', ['modalities' => Modality::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class ModalityController extends Controller
      */
     public function create()
     {
-        return view('modality.create');
+        return view('admin.modality.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class ModalityController extends Controller
      */
     public function edit(Modality $modality)
     {
-        return view('modality.edit', array('modality' => $modality));
+        return view('admin.modality.edit', array('modality' => $modality));
     }
 
     /**

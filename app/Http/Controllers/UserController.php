@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index', ['users' => User::all()]);
+        return view('admin.user.index', ['users' => User::all()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        return view('auth.register');
     }
 
     /**
@@ -37,9 +38,9 @@ class UserController extends Controller
     {
         $user = new User($request->all());
         if ($user->save()) {
-            return redirect()->route('user.index')->with('message', 'Modalidade criada com sucesso!');
+            return redirect()->route('user.index')->with('message', 'Usuário criado com sucesso!');
         } else {
-            return redirect()->route('user.index')->with('message', 'Erro na criação da modalidade!');
+            return redirect()->route('user.index')->with('message', 'Erro na criação do usuário!');
         }
     }
 

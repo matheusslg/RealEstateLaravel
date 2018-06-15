@@ -14,7 +14,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('city.index', ['cities' => City::all()]);
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        //
     }
 
     /**
@@ -35,12 +35,7 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City($request->all());
-        if ($city->save()) {
-            return redirect()->route('city.index')->with('message', 'Cidade criada com sucesso!');
-        } else {
-            return redirect()->route('city.index')->with('message', 'Erro na criação da cidade!');
-        }
+        //
     }
 
     /**
@@ -62,7 +57,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        return view('city.edit', array('city' => $city));
+        //
     }
 
     /**
@@ -74,8 +69,7 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        $city->update($request->all());
-        return redirect()->route('city.index');
+        //
     }
 
     /**
@@ -86,7 +80,6 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        $city->delete();
-        return redirect()->route('city.index');
+        //
     }
 }

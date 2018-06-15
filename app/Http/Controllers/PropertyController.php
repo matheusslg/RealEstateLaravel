@@ -19,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('property.index', ['properties' => Property::orderBy('nome')->get()]);
+        return view('admin.property.index', ['properties' => Property::orderBy('nome')->get()]);
     }
 
     /**
@@ -29,7 +29,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        return view('property.create', [
+        return view('admin.property.create', [
             'categories' => Category::orderBy('nome')->get(),
             'modalities' => Modality::orderBy('nome')->get(),
             'locations' => Location::orderBy('nome')->get(),
@@ -73,7 +73,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('property.edit', array('property' => $property));
+        return view('admin.property.edit', array('property' => $property));
     }
 
     /**
