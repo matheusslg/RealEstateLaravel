@@ -19,6 +19,7 @@
                 <th>{{ $location->id }}</th>
                 <td>{{ $location->nome }}</td>
                 <td>
+                    <div class="btn-group" role="group">
                     <form action="{{ route('location.edit', $location->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="GET">
@@ -33,6 +34,7 @@
                                 Apagar
                             </button>
                     </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

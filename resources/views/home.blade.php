@@ -37,7 +37,7 @@
 
 {{-- <canvas class="my-4" id="myChart" width="900" height="380"></canvas> --}}
 
-<h5>Propriedades recentes</h5>
+{{--  <h5>Propriedades recentes</h5>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
@@ -164,7 +164,7 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div>  --}}
 
 {{--
 <!-- Graphs -->

@@ -19,7 +19,12 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('admin.property.index', ['properties' => Property::orderBy('nome')->get()]);
+        return view('admin.property.index', [
+            'properties' => Property::orderBy('nome')->get(),
+            'categories' => Category::orderBy('nome')->get(),
+            'modalities' => Modality::orderBy('nome')->get(),
+            'locations' => Location::orderBy('nome')->get()
+        ]);
     }
 
     /**
@@ -62,7 +67,14 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        return view('admin.property.show', [
+            'property' => $property,
+            'categories' => Category::all(),
+            'modalities' => Modality::all(),
+            'locations' => Location::all(),
+            'cities' => City::all(),
+            'states' => State::all()
+        ]);
     }
 
     /**
@@ -73,7 +85,16 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('admin.property.edit', array('property' => $property));
+        $idState = $property->id_estado;
+        $state = State::where('id', $idState)->first();
+        return view('admin.property.edit', [
+            'property' => $property,
+            'categories' => Category::all(),
+            'modalities' => Modality::all(),
+            'locations' => Location::all(),
+            'cities' => City::where('uf', $state->uf)->get(),
+            'states' => State::all()
+        ]);
     }
 
     /**

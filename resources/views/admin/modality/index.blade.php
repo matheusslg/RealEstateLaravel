@@ -30,7 +30,7 @@
                         <form action="{{ route('modality.destroy', $modality->id) }}" method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a cidade {{ $modality->nome }}?')">
+                            <button class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a modalidade {{ $modality->nome }}?')">
                                 Apagar
                             </button>
                         </form>

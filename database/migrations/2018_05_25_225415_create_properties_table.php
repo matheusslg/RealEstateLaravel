@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
             $table->unsignedInteger('id_estado');
             $table->string('localidade');
             $table->text('descricao');
-            $table->string('geolocalizacao');
+            $table->string('geolocalizacao')->nullable();
             $table->decimal('valor', 10, 2);
             $table->decimal('area', 10, 2);
             $table->string('tipo_area');

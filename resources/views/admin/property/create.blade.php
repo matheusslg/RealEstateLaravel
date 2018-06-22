@@ -68,7 +68,7 @@
             <select name="id_estado" class="form-control" id="estadoSelect" onchange="property_onStateChange()">
                         <option value="empty">Selecione um estado</option>
                         @foreach($states as $state)
-                        <option value="{{ $state->uf }}">{{ $state->uf }}</option>
+                        <option value="{{ $state->id }}">{{ $state->uf }}</option>
                         @endforeach
                     </select>
         </div>
@@ -87,8 +87,8 @@
             <small id="geolocalizacaoHelp" class="form-text text-muted">Este campo pode ser preenchido com as coordenadas do Google Maps.</small>
         </div>
 
-        <div id="map"></div>
-        <br />
+        {{--  <div id="map"></div>
+        <br />  --}}
 
         <div class="form-group">
             <label for="text">Área</label>
@@ -112,9 +112,11 @@
             <input type="number" class="form-control" name="valor" placeholder="Valor da propriedade">
             <small id="geolocalizacaoHelp" class="form-text text-muted">Somente números na moeda Real.</small>
         </div>
-        <button class="btn btn-info">Enviar</button>
+        <div class="form-group" style="padding-bottom: 50px">
+            <button class="btn btn-info">Enviar</button>
+        </div>
     </form>
 </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFxqoJT-UimQJgznKztWWbY9A_XYxVUCY&callback=initMap"></script>
+{{--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFxqoJT-UimQJgznKztWWbY9A_XYxVUCY&callback=initMap"></script>  --}}
 @endsection

@@ -21,6 +21,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
+                    <div class="btn-group" role="group">
                     <form action="{{ route('user.edit', $user->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="GET">
@@ -35,6 +36,7 @@
                                 Apagar
                             </button>
                     </form>
+                    </div>
                 </td>
             </tr>
             @endforeach
