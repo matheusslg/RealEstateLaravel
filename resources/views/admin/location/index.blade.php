@@ -14,6 +14,7 @@
             </tr>
         </thead>
         <tbody>
+            @if(count($locations) > 0)
             @foreach($locations as $location)
             <tr>
                 <th>{{ $location->id }}</th>
@@ -38,6 +39,11 @@
                 </td>
             </tr>
             @endforeach
+            @else
+            <tr>
+                <td class="text-center" colspan="3">Nenhuma localidade encontrada!</td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>

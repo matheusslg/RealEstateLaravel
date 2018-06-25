@@ -53,10 +53,17 @@ class PropertyController extends Controller
     {
         $property = new Property($request->all());
         if ($property->save()) {
-            return redirect()->route('property.index')->with('message', 'Propriedade criada com sucesso!');
+            $notification = array(
+                'message' => 'A propriedade foi criada com sucesso!',
+                'alert-type' => 'success'
+            );
         } else {
-            return redirect()->route('property.index')->with('message', 'Erro na criação da propriedade!');
+            $notification = array(
+                'message' => 'Erro ao tentar criar a propriedade!',
+                'alert-type' => 'error'
+            );
         }
+        return redirect()->route('property.index')->with($notification);
     }
 
     /**
@@ -106,8 +113,18 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-        $property->update($request->all());
-        return redirect()->route('property.index');
+        if ($property->update($request->all())) {
+            $notification = array(
+                'message' => 'A propriedade foi atualizada com sucesso!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Erro ao tentar atualizar a propriedade!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->route('property.index')->with($notification);
     }
 
     /**
@@ -119,6 +136,61 @@ class PropertyController extends Controller
     public function destroy(Property $property)
     {
         $property->delete();
-        return redirect()->route('property.index');
+        if ($property->delete()) {
+            $notification = array(
+                'message' => 'A propriedade foi deletada com sucesso!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Erro ao tentar deletar a propriedade!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->route('property.index')->with($notification);
+    }
+
+    public function trash()
+    {
+        return view('admin.property.trash', [
+            'properties' => Property::onlyTrashed()->orderBy('nome')->get(),
+            'categories' => Category::orderBy('nome')->get(),
+            'modalities' => Modality::orderBy('nome')->get(),
+            'locations' => Location::orderBy('nome')->get()
+        ]);
+    }
+
+    public function restore(Request $request)
+    {
+        $property = Property::withTrashed()->where('id', $request->id)->restore();
+        if ($property) {
+            $notification = array(
+                'message' => 'A propriedade foi restaurada com sucesso!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Erro ao tentar restaurar a propriedade!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->route('property.index')->with($notification);
+    }
+
+    public function delete(Request $request)
+    {
+        $property = Property::withTrashed()->where('id', $request->id)->forceDelete();
+        if ($property) {
+            $notification = array(
+                'message' => 'A propriedade foi deletada permanentemente com sucesso!',
+                'alert-type' => 'success'
+            );
+        } else {
+            $notification = array(
+                'message' => 'Erro ao tentar deletar a propriedade!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->route('property.trash')->with($notification);
     }
 }

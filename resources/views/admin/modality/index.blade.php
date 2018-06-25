@@ -14,6 +14,7 @@
             </tr>
         </thead>
         <tbody>
+            @if(count($modalities) > 0)
             @foreach($modalities as $modality)
             <tr>
                 <th>{{ $modality->id }}</th>
@@ -38,6 +39,11 @@
                 </td>
             </tr>
             @endforeach
+            @else
+            <tr>
+                <td class="text-center" colspan="3">Nenhuma modalidade encontrada!</td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>

@@ -15,10 +15,12 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/pages/property.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css"> 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.min.css') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -78,6 +80,12 @@
                                     <span data-feather="chevron-right"></span>
                                     Ver propriedades
                                   </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('property.trash') }}">
+                                    <span data-feather="chevron-right"></span>
+                                    Lixeira
+                                </a>
                             </li>
                             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                                 <span>Categorias</span>
@@ -180,6 +188,26 @@
 <script>
     feather.replace()
 
+</script>
+
+<script>
+        @if(Session::has('message'))
+          var type = "{{ Session::get('alert-type', 'info') }}";
+          switch(type){
+              case 'info':
+                  toastr.info("{{ Session::get('message') }}");
+                  break;
+              case 'warning':
+                  toastr.warning("{{ Session::get('message') }}");
+                  break;
+              case 'success':
+                  toastr.success("{{ Session::get('message') }}");
+                  break;
+              case 'error':
+                  toastr.error("{{ Session::get('message') }}");
+                  break;
+          }
+        @endif
 </script>
 
 </html>

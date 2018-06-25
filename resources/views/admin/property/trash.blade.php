@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Propriedades</h1>
-    <a class="btn btn-success" href="{{ route('property.create') }}">Nova Propriedade</a>
+    <h1 class="h2">Propriedades excluídas</h1>
+    <a class="btn btn-primary" href="{{ route('property.index') }}">Ver Propriedades</a>
 </div>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
@@ -22,7 +22,7 @@
             @if(count($properties) > 0)
             @foreach($properties as $property)
             <tr>
-                <th><a href="{{ route('property.show', $property->id) }}">{{ $property->id }}</a></th>
+                <th>{{ $property->id }}</th>
                 <td>{{ $property->nome }}</td>
                 <td>{{ $property->localidade }}</td>
                 <td>
@@ -49,18 +49,16 @@
                 <td>{{ $property->valor }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <form action="{{ route('property.edit', $property->id) }}" method="POST">
+                        <form action="{{ route('property.restore', $property->id) }}" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="GET">
-                            <button class="btn btn-info">
-                                Editar
+                            <button class="btn btn-warning">
+                                Restaurar
                             </button>
                         </form>
-                        <form action="{{ route('property.destroy', $property->id) }}" method="POST">
+                        <form action="{{ route('property.delete', $property->id) }}" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger" onclick="return confirm('Deseja mesmo excluir a propriedade {{ $property->nome }}?')">
-                                Apagar
+                            <button class="btn btn-danger">
+                                Deletar
                             </button>
                         </form>
                     </div>
@@ -69,7 +67,7 @@
             @endforeach
             @else
             <tr>
-                <td class="text-center" colspan="8">Nenhuma propriedade encontrada!</td>
+                <td class="text-center" colspan="8">Nenhuma propriedade encontrada na lixeira!</td>
             </tr>
             @endif
         </tbody>

@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Property extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'properties';
 
     protected $fillable = [
@@ -25,6 +28,8 @@ class Property extends Model
         'banheiros',
         'garagens'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function categories() {
         return $this->hasOne(Category::class);
