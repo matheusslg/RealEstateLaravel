@@ -9,7 +9,7 @@
     <div class="card-body">
         <h2 class="card-title">Parabéns!</h2>
         <p class="card-text">Agora que todos os dados já foram cadastrados, nós podemos começar cadastrando uma nova propriedade.</p><br />
-        <a class="btn btn-success" href="{{ route('property.create') }}">Criar Propriedade</a>
+        <a class="btn btn-success" href="{{ route('property.create') }}">Cadastrar Propriedade</a>
     </div>
 </div>
 
